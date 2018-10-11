@@ -1,0 +1,102 @@
+layout
+
+test artist
+4293890
+test album
+4189897
+
+http://api.tidalhifi.com/VERSION/TYPE/RESOURCE/?token=TOKEN&countryCode=COUNTRYCODE
+
+v1 for api version - duh
+artists/albums for api version
+resource is a numeric value
+token is 'reappropriated' from another project - required
+countrycode is AU - required
+token for logging in is wdgaB1CilGA-S_s2
+
+================
+GETS ARTIST INFO
+================
+
+http://api.tidalhifi.com/v1/artists/3565368/
+?countryCode=AU&
+token=P5Xbeo5LFvESeDy6
+
+=================
+GET ARTIST ALBUMS
+=================
+http://api.tidalhifi.com/v1/artists/3565368/albums
+?countryCode=AU&
+token=P5Xbeo5LFvESeDy6
+GIVES totalNumberOfItems
+PERFORM second request passing limit=totalNumberOfItems
+RETURNS zero indexed items array 
+
+=================
+GET ALBUM DETAILS
+=================
+http://api.tidalhifi.com/v1/albums/73708363/
+?countryCode=AU
+&token=P5Xbeo5LFvESeDy6
+
+GIVES numberOfTracks
+GIVES streamReady / allowStreaming
+GIVES copyright ? potential trolling?
+GIVES audioQuality ? when fetching data, use
+
+=================
+GET ALBUM TRACKS
+=================
+http://api.tidalhifi.com/v1/albums/73708363/items
+?limit=numberOfTracks
+&countryCode=AU
+&token=P5Xbeo5LFvESeDy6
+
+GIVES items ? zero indexed array of tracks
+IN items:{
+	0:{
+	item:{
+		id : ? for fetching
+		title : ? for metadata logging
+		duration : 59,
+		replayGain : -5.88,
+		peak : 1,
+		allowStreaming : true,
+		streamReady : true,
+		streamStartDate : "2017-05-19T00:00:00.000+0000",
+		premiumStreamingOnly : false,
+		trackNumber : 1,
+		volumeNumber : 1,
+		version : null,
+		popularity : 0,
+		copyright : "2017 Rhino Entertainment",
+		url : "http://www.tidal.com/track/73708364",
+		isrc : "USRH11700174",
+		editable : false,
+		explicit : false,
+		audioQuality : "HI_RES",
+	}
+	type : "track"
+	}
+}
+
+==========
+LOGGING IN
+==========
+http://api.tidalhifi.com/v1/login/username
+?username=USERNAME&
+password=PASSWORD&
+token=wdgaB1CilGA-S_s2
+
+POST
+
+Content-Type : application/x-www-form-urlencoded
+
+=================
+GET STREAM URL
+=================
+http://api.tidalhifi.com/v1/tracks/40453250/streamUrl
+?sessionId=
+soundQuality=LOSSLESS
+&countryCode=AU
+&token=P5Xbeo5LFvESeDy6
