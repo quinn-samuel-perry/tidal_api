@@ -29,7 +29,7 @@ def run(albums):
 		print "[*] album %s finished" % album
 
 
-albums = [353330]
+albums = [3390060]
 sesh = theft.Session()
 seshId = sesh.login()
 print sesh.seshId
